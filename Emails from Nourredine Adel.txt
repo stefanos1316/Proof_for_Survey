@@ -1,0 +1,149 @@
+On Wed, Jun 8, 2016 at 10:01 PM, Stefanos Georgiou <stefanos1316@gmail.com> wrote:
+Actually I did find it, I think, I just used the command $./jolinar java Benchmark and seems  it's working now.
+
+Best Regards,
+
+Stefanos Georgiou
+PhD candidate in SENECA
+Athens University of Economics and Business
+
+
+On Wed, Jun 8, 2016 at 9:39 PM, Stefanos Georgiou <stefanos1316@gmail.com> wrote:
+Hello Adel,
+
+Sorry for the interruption again, I disabled the intel_pstate module, although I get some other error with warning such as this:
+
+[root@192 jolinar]# ./jolinar SomeTest
+~~ Jolinar 2 ~~
+09:37:23 - [INFO] - Loading properties
+java.io.IOException: Cannot run program "SomeTest": error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1047)
+	at jolinar.Main.main(Main.java:256)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.UNIXProcess.forkAndExec(Native Method)
+	at java.lang.UNIXProcess.<init>(UNIXProcess.java:186)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:130)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1028)
+	... 1 more
+09:37:23 - [INFO] - Loading energy modules
+09:37:23 - [INFO] - CPU...OK
+09:37:23 - [INFO] - Disk...OK
+09:37:23 - [INFO] - Memory...OK
+09:37:23 - [INFO] - Started monitoring application with PID 0
+09:37:23 - [WARNING] - null
+09:37:23 - [WARNING] - /proc/0/io
+09:37:23 - [WARNING] - /proc/0/status
+09:37:23 - [WARNING] - null
+
+
+Any idea how can I solve it?
+
+p.s. application by itself runs normally.
+
+Best Regards,
+
+Stefanos Georgiou
+PhD candidate in SENECA
+Athens University of Economics and Business
+
+
+On Wed, Jun 8, 2016 at 3:46 PM, Stefanos Georgiou <stefanos1316@gmail.com> wrote:
+Ohh, I see, either way thanks a lot for your time.
+
+Cheers,
+
+Stefanos
+
+Best Regards,
+
+Stefanos Georgiou
+PhD candidate in SENECA
+Athens University of Economics and Business
+
+
+On Wed, Jun 8, 2016 at 3:42 PM, Adel Noureddine <A.Noureddine@uel.ac.uk> wrote:
+I probably was unclear, I mean by “old” the kernel module (not the hardware).
+The Linux kernel got, a few years ago, a new more efficient module to manage CPU states and energy, which, unfortunately, doesn’t provide detailed statistics as the older module.
+
+
+> On 8 Jun 2016, at 13:39, Stefanos Georgiou <stefanos1316@gmail.com> wrote:
+> 
+> Dear Adel,
+> 
+> Thank you for your reply. By the meaning old what do you mean? 
+> My CPU is a second generation i7 (i.e., 2670qm), do you know if that is sufficient for your app?
+> 
+> Cheers,
+> 
+> Stefanos
+> 
+> Best Regards,
+> 
+> Stefanos Georgiou
+> PhD candidate in SENECA
+> Athens University of Economics and Business
+> 
+> 
+> On Wed, Jun 8, 2016 at 3:32 PM, Adel Noureddine <A.Noureddine@uel.ac.uk> wrote:
+> Dear Stefanos,
+> 
+> The error you’re having is because Jolinar can’t find the file time_in_state which is required to collect CPU time for each state of the CPU.
+> 
+> Unfortunately, this file is generated using the old Intel energy module in the Linux kernel (the new one does not support these statistics).
+> You can revert to the old one by disabling “intel_pstate” in during Linux boot (for example by modifying grub commands).
+> Just add " intel_pstate=disable” to your kernel boot arguments.
+> 
+> Best,
+> Adel
+> 
+> 
+> > On 8 Jun 2016, at 09:42, Stefanos Georgiou <stefanos1316@gmail.com> wrote:
+> > 
+> > Dear Noureddine,
+> > 
+> > Currently I am trying to test you tool, i.e., Jolinar, which I have installed following the link: https://github.com/adelnoureddine/jolinar/tree/master/2.5/jolinar .
+> > I have prepared a small java program that runs SPECjvm2008.jar https://www.spec.org/jvm2008/docs/ in order to test it with Jolinar.
+> > I have also configured all the $./jolinar -h parameters.
+> > If I test my application: $./java benchmark , it runs normally.
+> > I execute the monitoring tool as: $./jolinar benchmark (i.e., the output of javac benchmark.java)
+> > Although, I receive warnings and I cannot see the benchmark running (while executing top command in shell).
+> > 
+> > The warnings are the following:
+> > 
+> > 11:32:31 - [WARNING] - null
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu1/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu2/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu3/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu4/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu5/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu6/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /sys/devices/system/cpu/cpu7/cpufreq/stats/time_in_state (No such file or directory)
+> > 11:32:31 - [WARNING] - /proc/0/io
+> > 11:32:31 - [WARNING] - /proc/0/status
+> > .......................................................
+> > .......................................................
+> > 
+> > Any idea what can cause the issue or how I can work around it?
+> > 
+> > 
+> > 
+> > Best Regards,
+> > 
+> > Stefanos Georgiou
+> > PhD candidate in SENECA
+> > Athens University of Economics and Business
+> > 
+> 
+> --
+> Dr Adel Noureddine
+> www.noureddine.org
+> 
+> 
+> This email has been scanned for email related threats and delivered safely by Mimecast.
+> For more information please visit http://www.mimecast.com
+> 
+
+--
+Dr Adel Noureddine
+www.noureddine.org
