@@ -1,0 +1,33 @@
+Pereira et al. - 2016 - The Influence of the Java Collection Framework on Overall Energy Consumption
+====================================================================================================
+
+In their publication Pereira et al. retrieve values from comparing different JCF implimentations. 
+Here, we collected the results from 3 different interfaces' methods and we calculated the results 
+added in our survey paper. 
+To compare the results we first retrieved the most and the less efficient cases.
+
+Note: In order to retrieve the average values from all the methods of a specific implimentation we 
+used the following web service: http://www.calculatorsoup.com/calculators/statistics/average.php
+
+Set 
+===
+Efficient Case:	LinkedHashSet -> 1.49 1.93 1.32 1.04 2.17 1.29 0.96 1.24 1.91 2.25 1.37 => 1.5
+Inefficient Case: TreeSet -> 1.48 1.51 1.85 2.04 1.44 1.38 1.72 1.07 1.39 3.22 1.62 => 1.7
+		
+List
+====
+Efficient Case: AttributeList -> 1.15 1.04 1.6 1.38 1.24 2.42 1.80 1.11 2.03 1.04 1.15 1.76 1.61 1.15 1.44 7.81 1.35 2.78 1.59 1.6 1.5 => 1.83
+Inefficient Case: LinkedList -> 1.8 1.10 1.72 1.64 1.65 3.15 2.28 2.01 2.62 2.64 1.76 2.5 2.5 2.19 1.69 8.31 1.71 2.59 2.04 1.84 1.67 => 2.35
+		
+Map 
+===
+Inefficient Case: Concurrent HashMap -> 2.02 2.32 21.56 2.28 2.31 2.10 1.72 1.85 1.41 1.85 1.82 => 3.74
+Efficient Case: LinkedHashMap -> 1.5 1.87 6.13 1.83 1.82 1.64 1.83 2.03 1.86 2.23 2 => 2.24
+
+
+
+Comparing the results for Efficient and Inefficient cases in %
+==============================================================
+Set Case: 12.5 (LinkedHashSet)
+List: 24.88 (AttributeList)
+Map: 50.16 (LinkedHashMap)
