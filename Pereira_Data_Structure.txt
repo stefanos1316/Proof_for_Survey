@@ -28,6 +28,6 @@ Efficient Case: LinkedHashMap -> 1.5 1.87 6.13 1.83 1.82 1.64 1.83 2.03 1.86 2.2
 
 Comparing the results for Efficient and Inefficient cases in %
 ==============================================================
-Set Case: 12.5 (LinkedHashSet)
+Set: 12.5 (LinkedHashSet)
 List: 24.88 (AttributeList)
 Map: 50.16 (LinkedHashMap)
